@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | FoodExpress</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/reviews.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        .reviews-container {
+            padding: 4rem 0;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0,0.1);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .reviewer-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 3px solid var(--primary-color);
+        }
+
+        .reviewer-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .review-rating {
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .review-text {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-images {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .review-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .review-img:hover {
+            transform: scale(1.05);
+        }
+
+        .video-reviews {
+            background: #f9f9f9;
+            padding: 5rem 0;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .leave-review {
+            text-align: center;
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .review-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .rating-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating-input i {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .rating-input i.active {
+            color: #FFD700;
+        }
+
+        .image-upload {
+            border: 2px dashed #ddd;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-upload:hover {
+            border-color: var(--primary-color);
+            background: rgba(255, 99, 71, 0.05);
+        }
+
+        .image-upload i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .image-upload p {
+            margin: 0;
+            color: var(--text-light);
+        }
+
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .reviews-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+            </style>
+
+
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">Food<span>Express</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="reviews.html" class="active">Reviews</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn-login">Login</a>
+            </div>
+            <div class="nav-actions">
+                <a href="menu.html" class="btn btn-primary">Order Now</a>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="hamburger" id="menuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="reviews-hero">
+        <div class="container">
+            <h1>What Our Customers Say</h1>
+            <p>Hear from people who have experienced our delicious food and excellent service</p>
+            <a href="#leave-review" class="btn btn-primary btn-lg mt-3">Write a Review</a>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews-container container" id="reviews">
+        <h2 class="section-title">Customer Testimonials</h2>
+        <p class="text-center mb-4" style="max-width: 700px; margin: 0 auto;">
+            Read what our customers are saying about their FoodExpress experience. We value all feedback to help us improve our service.
+        </p>
+        
+        <div class="reviews-grid" id="reviewsContainer">
+            <!-- Reviews will be dynamically loaded here -->
+        </div>
+        
+        <div class="text-center mt-4">
+            <button id="loadMoreReviews" class="btn btn-outline-primary">Load More Reviews</button>
+        </div>
+    </section>
+
+    <!-- Leave a Review Section -->
+    <section class="leave-review" id="leave-review">
+        <div class="container">
+            <h2 class="section-title">Share Your Experience</h2>
+            <p class="text-center mb-4" style="max-width: 700px; margin: 0 auto 2rem;">
+                We'd love to hear about your FoodExpress experience. Your feedback helps us improve our service!
+            </p>
+            
+            <form class="review-form" id="reviewForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Rating *</label>
+                    <div class="rating-input">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                        <input type="hidden" id="rating" name="rating" value="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="review">Your Review *</label>
+                    <textarea id="review" class="form-control" required placeholder="Tell us about your experience..."></textarea>
+                </div>
+                
+                <!-- Order Verification (Optional) -->
+                <div class="order-verification" id="orderVerification">
+                    <h4><i class="fas fa-check-circle text-success d-none" id="verifiedBadge"></i> Verify Your Order (Optional)</h4>
+                    <p class="text-muted small mb-3">Add your order number to verify your purchase and get a verified badge on your review.</p>
+                    <div class="verification-input">
+                        <input type="text" id="orderId" class="form-control" placeholder="Enter Order ID">
+                        <button type="button" id="verifyOrderBtn" class="btn btn-outline-primary">Verify</button>
+                    </div>
+                    <div id="verificationStatus"></div>
+                </div>
+                
+                <!-- Photo Upload -->
+                <div class="form-group">
+                    <label>Add Photos (Optional)</label>
+                    <div class="image-upload" id="imageUpload">
+                        <i class="fas fa-camera"></i>
+                        <p>Click to upload photos of your food</p>
+                        <p class="small text-muted mt-1">Maximum 5 images (JPEG, PNG, max 5MB each)</p>
+                        <input type="file" id="foodPhotos" accept="image/*" multiple style="display: none;">
+                    </div>
+                    <div id="imagePreview" class="mt-3"></div>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <span class="submit-text">Submit Review</span>
+                    <div class="spinner-border spinner-border-sm d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </button>
+                
+                <p class="text-muted small mt-3">
+                    By submitting this review, you agree to our <a href="#">Terms of Service</a> and 
+                    <a href="#">Privacy Policy</a>. Your email will not be published.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Video Testimonials Section -->
+    <section class="video-reviews bg-light py-5">
+        <div class="container">
+            <h2 class="section-title">Video Testimonials</h2>
+            <p class="text-center mb-4" style="max-width: 700px; margin: 0 auto 3rem;">
+                Watch what our customers have to say about their FoodExpress experience
+            </p>
+            
+            <div class="video-grid">
+                <!-- Video 1 -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/example1" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Amazing Food & Service! 😍</h3>
+                        <div class="video-meta">
+                            <span><i class="far fa-user"></i> Neha K.</span>
+                            <span><i class="far fa-clock"></i> 2 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/example2" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Best Biryani in Town! 🔥</h3>
+                        <div class="video-meta">
+                            <span><i class="far fa-user"></i> Arjun M.</span>
+                            <span><i class="far fa-clock"></i> 1 month ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/example3" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>Family Dinner Sorted! 🍛</h3>
+                        <div class="video-meta">
+                            <span><i class="far fa-user"></i> The Desai Family</span>
+                            <span><i class="far fa-clock"></i> 3 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-primary">View More Videos</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>FoodExpress</h3>
+                    <p>Delivering happiness to your doorstep since 2015. Fresh ingredients, authentic recipes, and a passion for great food.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, Mumbai, India</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@foodexpress.com</p>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get updates on special offers and more!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 FoodExpress. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/reviews.js"></script>
+    
+    <!-- Initialize Review System -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add sample reviews if none exist
+            if (!localStorage.getItem('foodexpress_reviews')) {
+                const sampleReviews = [
+                    {
+                        id: '1',
+                        name: 'Priya Patel',
+                        email: 'priya@example.com',
+                        rating: 5,
+                        review: 'The food was absolutely delicious! I ordered the Butter Chicken and Garlic Naan, and it was delivered hot and fresh. The flavors were amazing, just like homemade. Will definitely order again!',
+                        date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+                        isVerified: true,
+                        orderId: 'ORD' + Math.floor(100000 + Math.random() * 900000),
+                        images: [
+                            'https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                            'https://images.unsplash.com/photo-1601050691147-5e1f839757a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                        ],
+                        status: 'approved',
+                        likes: 12
+                    },
+                    {
+                        id: '2',
+                        name: 'Rahul Sharma',
+                        email: 'rahul@example.com',
+                        rating: 4,
+                        review: 'Great service! The delivery was on time and the food was packed really well. The Biryani was flavorful and the portion size was generous. The only reason I\'m not giving 5 stars is because the raita was a bit less.',
+                        date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+                        isVerified: true,
+                        orderId: 'ORD' + Math.floor(100000 + Math.random() * 900000),
+                        images: [
+                            'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                        ],
+                        status: 'approved',
+                        likes: 8
+                    },
+                    {
+                        id: '3',
+                        name: 'Ananya Gupta',
+                        email: 'ananya@example.com',
+                        rating: 5,
+                        review: 'I\'m a regular customer and I love the consistency in taste and quality. The Paneer Tikka Masala is my absolute favorite! The delivery is always prompt and the packaging is eco-friendly, which I really appreciate.',
+                        date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
+                        isVerified: true,
+                        orderId: 'ORD' + Math.floor(100000 + Math.random() * 900000),
+                        images: [
+                            'https://images.unsplash.com/photo-1631514624027-3d5b99aac3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                            'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                        ],
+                        status: 'approved',
+                        likes: 15
+                    }
+                ];
+                
+                localStorage.setItem('foodexpress_reviews', JSON.stringify(sampleReviews));
+            }
+            
+            // Initialize the review system
+            window.reviewSystem = new ReviewSystem();
+            
+            // Load more reviews button
+            const loadMoreBtn = document.getElementById('loadMoreReviews');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // In a real app, this would load more reviews from the server
+                    this.textContent = 'No more reviews to load';
+                    this.disabled = true;
+                });
+            }
+            
+            // Form submission feedback
+            const reviewForm = document.getElementById('reviewForm');
+            if (reviewForm) {
+                const submitBtn = reviewForm.querySelector('.btn-submit');
+                const submitText = reviewForm.querySelector('.submit-text');
+                const spinner = reviewForm.querySelector('.spinner-border');
+                
+                reviewForm.addEventListener('submit', function(e) {
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitText.textContent = 'Submitting...';
+                    spinner.classList.remove('d-none');
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Reset form
+                        reviewForm.reset();
+                        document.getElementById('imagePreview').innerHTML = '';
+                        
+                        // Show success message
+                        const notification = document.createElement('div');
+                        notification.className = 'notification success';
+                        notification.textContent = 'Thank you for your review! It will be published after moderation.';
+                        document.body.appendChild(notification);
+                        
+                        // Show notification
+                        setTimeout(() => notification.classList.add('show'), 100);
+                        
+                        // Hide notification after 3 seconds
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                            setTimeout(() => notification.remove(), 300);
+                        }, 3000);
+                        
+                        // Reset button state
+                        submitBtn.disabled = false;
+                        submitText.textContent = 'Submit Review';
+                        spinner.classList.add('d-none');
+                    }, 1500);
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+                
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+
+            // Hover effect
+            star.addEventListener('mouseover', () => {
+                const rating = star.getAttribute('data-rating');
+                
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+        });
+
+        // Reset stars on mouse leave
+        document.querySelector('.rating-input').addEventListener('mouseleave', () => {
+            const currentRating = ratingInput.value;
+            
+            stars.forEach((star, index) => {
+                if (index < currentRating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        });
+
+        // Image Upload Preview
+        const imageUpload = document.getElementById('imageUpload');
+        const fileInput = document.getElementById('foodPhotos');
+        const imagePreview = document.getElementById('imagePreview');
+
+        imageUpload.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            imagePreview.innerHTML = '';
+            
+            if (fileInput.files.length > 0) {
+                Array.from(fileInput.files).forEach(file => {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = (e) => {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.style.width = '80px';
+                            img.style.height = '80px';
+                            img.style.objectFit = 'cover';
+                            img.style.borderRadius = '5px';
+                            imagePreview.appendChild(img);
+                        };
+                        
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+
+        // Form Submission
+        const reviewForm = document.getElementById('reviewForm');
+        
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                rating: document.getElementById('rating').value,
+                review: document.getElementById('review').value,
+                images: fileInput.files
+            };
+            
+            console.log('Review submitted:', formData);
+            
+            // Show success message
+            alert('Thank you for your review! Your feedback is valuable to us.');
+            
+            // Reset form
+            reviewForm.reset();
+            imagePreview.innerHTML = '';
+            ratingInput.value = '0';
+            
+            // Reset stars
+            stars.forEach(star => {
+                star.classList.remove('fas');
+                star.classList.add('far');
+            });
+        });
+    </script>
+</body>
+</html>

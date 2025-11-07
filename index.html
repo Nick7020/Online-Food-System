@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodExpress | Delicious Meals Delivered</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">Food<span>Express</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn-login">Login</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" id="trackOrderBtn" class="track-order-link"><i class="fas fa-truck"></i> Track Order</a>
+                <button class="btn btn-primary">Order Now</button>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="hamburger" id="menuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Delicious Food Delivered To Your Doorstep</h1>
+                <p>Order your favorite meals from the best restaurants in town and get them delivered fast to your home or office.</p>
+                <div class="cta-buttons">
+                    <a href="#menu" class="btn btn-primary">Order Now</a>
+                    <a href="#about" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877039348bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Delicious Food">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your food delivered in under 30 minutes or it's free</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Fresh Food</h3>
+                    <p>100% fresh ingredients from trusted restaurants</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3>Best Offers</h3>
+                    <p>Exclusive deals and discounts for our customers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Dishes -->
+    <section class="popular-dishes" id="menu">
+        <div class="container">
+            <h2 class="section-title">Popular Dishes</h2>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Burger">
+                        <div class="dish-badge">
+                            <i class="fas fa-star"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h3>Classic Burger</h3>
+                        <p>Beef patty with cheese, lettuce, and special sauce</p>
+                        <div class="dish-footer">
+                            <span class="price">$12.99</span>
+                            <button class="btn-cart">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- More dish cards can be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"The food was amazing and delivery was super fast! Will definitely order again."</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <span>Regular Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- More testimonials can be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Get 20% Off Your First Order</h2>
+                <p>Subscribe to our newsletter for exclusive deals and updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>FoodExpress</h3>
+                    <p>Delivering happiness to your doorstep with the best food in town.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, Cuisine City</p>
+                    <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                    <p><i class="fas fa-envelope"></i> info@foodexpress.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FoodExpress. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tracking Modal -->
+    <div id="trackingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Track Your Order</h2>
+            <div class="tracking-form">
+                <input type="text" id="orderNumber" placeholder="Enter your order number">
+                <button id="trackBtn" class="btn btn-primary">Track</button>
+            </div>
+            <div id="trackingResult" class="tracking-result">
+                <div class="tracking-status">
+                    <div class="status-line"></div>
+                    <div class="status-steps">
+                        <div class="status-step active" data-status="ordered">
+                            <div class="status-icon"><i class="fas fa-shopping-bag"></i></div>
+                            <div class="status-text">Order Placed</div>
+                            <div class="status-time">Just now</div>
+                        </div>
+                        <div class="status-step" data-status="preparing">
+                            <div class="status-icon"><i class="fas fa-utensils"></i></div>
+                            <div class="status-text">Preparing</div>
+                            <div class="status-time">--:--</div>
+                        </div>
+                        <div class="status-step" data-status="on-the-way">
+                            <div class="status-icon"><i class="fas fa-motorcycle"></i></div>
+                            <div class="status-text">On the way</div>
+                            <div class="status-time">--:--</div>
+                        </div>
+                        <div class="status-step" data-status="delivered">
+                            <div class="status-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="status-text">Delivered</div>
+                            <div class="status-time">--:--</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="deliveryMap" class="delivery-map">
+                    <!-- Map will be loaded here via JavaScript -->
+                    <div id="map" style="height: 200px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marker-alt" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                            <p>Delivery location will appear here</p>
+                        </div>
+                    </div>
+                    <div class="delivery-info">
+                        <div class="delivery-person">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Delivery Person" class="delivery-avatar">
+                            <div class="delivery-details">
+                                <h4>Your Delivery Partner</h4>
+                                <p id="deliveryPersonName">Rahul K.</p>
+                                <div class="delivery-contact">
+                                    <a href="tel:+919876543210" class="btn btn-sm btn-outline"><i class="fas fa-phone"></i> Call</a>
+                                    <a href="https://wa.me/919876543210" class="btn btn-sm btn-outline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="delivery-estimate">
+                            <div class="estimate-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <div class="estimate-label">Estimated Delivery</div>
+                                    <div class="estimate-value" id="deliveryTime">25-35 min</div>
+                                </div>
+                            </div>
+                            <div class="estimate-item">
+                                <i class="fas fa-motorcycle"></i>
+                                <div>
+                                    <div class="estimate-label">Delivery Partner</div>
+                                    <div class="estimate-value">On the way</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Track Order Modal
+        const trackOrderBtn = document.getElementById('trackOrderBtn');
+        const trackingModal = document.getElementById('trackingModal');
+        const closeModal = document.querySelector('.close-modal');
+        const trackBtn = document.getElementById('trackBtn');
+        const orderNumberInput = document.getElementById('orderNumber');
+        const trackingResult = document.getElementById('trackingResult');
+        const deliveryTime = document.getElementById('deliveryTime');
+        const deliveryPersonName = document.getElementById('deliveryPersonName');
+
+        // Sample delivery data (in a real app, this would come from your backend)
+        const deliveryData = {
+            'ORDER123': {
+                status: 'on-the-way',
+                deliveryPerson: 'Rahul K.',
+                phone: '+919876543210',
+                eta: '15-25 min',
+                steps: {
+                    'ordered': '12:30 PM',
+                    'preparing': '12:40 PM',
+                    'on-the-way': '1:00 PM',
+                    'delivered': null
+                }
+            }
+        };
+
+        // Open modal
+        trackOrderBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            trackingModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            trackingModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close when clicking outside modal
+        window.addEventListener('click', (e) => {
+            if (e.target === trackingModal) {
+                trackingModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Track order
+        trackBtn.addEventListener('click', () => {
+            const orderNumber = orderNumberInput.value.trim();
+            
+            if (!orderNumber) {
+                alert('Please enter your order number');
+                return;
+            }
+
+            // In a real app, you would make an API call here
+            // For demo purposes, we'll use sample data
+            if (deliveryData[orderNumber]) {
+                const order = deliveryData[orderNumber];
+                updateTrackingUI(order);
+                trackingResult.style.display = 'block';
+                
+                // Simulate live location updates (in a real app, this would come from WebSockets)
+                if (order.status === 'on-the-way') {
+                    simulateLiveTracking();
+                }
+            } else {
+                alert('Order not found. Please check your order number and try again.');
+            }
+        });
+
+        function updateTrackingUI(order) {
+            // Update status steps
+            Object.entries(order.steps).forEach(([status, time]) => {
+                const step = document.querySelector(`.status-step[data-status="${status}"]`);
+                if (step) {
+                    if (time) {
+                        step.classList.add('completed');
+                        step.querySelector('.status-time').textContent = time;
+                    }
+                    if (status === order.status) {
+                        step.classList.add('active');
+                    }
+                }
+            });
+
+            // Update delivery info
+            deliveryPersonName.textContent = order.deliveryPerson;
+            deliveryTime.textContent = order.eta;
+        }
+
+        function simulateLiveTracking() {
+            // In a real app, this would be handled by WebSockets
+            // For demo, we'll just update the ETA every 10 seconds
+            let minutes = 15;
+            const interval = setInterval(() => {
+                minutes--;
+                if (minutes <= 0) {
+                    clearInterval(interval);
+                    deliveryTime.textContent = 'Arriving now';
+                    // Update status to delivered after a delay
+                    setTimeout(() => {
+                        const order = deliveryData['ORDER123'];
+                        order.status = 'delivered';
+                        order.steps['delivered'] = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        updateTrackingUI(order);
+                    }, 5000);
+                } else {
+                    deliveryTime.textContent = `${minutes}-${minutes + 5} min`;
+                }
+            }, 10000);
+
+            // In a real app, you would update the map here with new coordinates
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodExpress | Our Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">Food<span>Express</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="about.html">About</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn-login">Login</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="viewCartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <div class="hamburger" id="menuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Menu Section -->
+    <section class="menu-section container">
+        <h2 class="section-title">Our Delicious Menu</h2>
+        <div class="menu-filters">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="pizza">Pizza</button>
+            <button class="filter-btn" data-category="burger">Burgers</button>
+            <button class="filter-btn" data-category="pasta">Pasta</button>
+            <button class="filter-btn" data-category="salad">Salads</button>
+            <button class="filter-btn" data-category="dessert">Desserts</button>
+        </div>
+
+        <div class="menu-items" id="menuItems">
+            <!-- Menu items will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Your Order</h3>
+                <button class="close-cart" id="closeCart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be loaded here -->
+                <p class="empty-cart-message">Your cart is empty</p>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount">₹0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Form Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Delivery Details</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <span>Cash on Delivery</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card">
+                            <span>Credit/Debit Card</span>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
