@@ -248,17 +248,20 @@
             <a href="index.html" class="logo">Food<span>Express</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
-                <a href="menu.html" class="active">Menu</a>
+                <a href="menu.html">Menu</a>
                 <a href="about.html">About</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="contact.html">Contact</a>
+                <a href="track-order.html" class="track-order-link mobile-only active"><i class="fas fa-truck"></i> Track Order</a>
                 <a href="login.html" class="btn-login">Login</a>
             </div>
             <div class="nav-actions">
-                <button class="btn btn-primary" id="viewCartBtn">
+                <a href="track-order.html" class="track-order-link desktop-only active"><i class="fas fa-truck"></i> Track Order</a>
+                <a href="menu.html" class="btn btn-primary">Order Now</a>
+                <div class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
-                </button>
+                </div>
                 <div class="hamburger" id="menuBtn">
                     <span></span>
                     <span></span>
@@ -266,7 +269,8 @@
                 </div>
             </div>
         </nav>
-    </header><br><br>
+    </header>
+    <br><br>
 
     <div class="tracking-container">
         <div class="order-header">
@@ -333,7 +337,43 @@
     <script>
         // You can add dynamic functionality here
         document.addEventListener('DOMContentLoaded', function() {
-            // Example: Update order details from URL parameters
+            // Sticky header functionality
+            const header = document.querySelector('.header');
+            let lastScroll = 0;
+            const headerHeight = header.offsetHeight;
+            
+            // Add padding to body to account for fixed header
+            document.body.style.paddingTop = headerHeight + 'px';
+            
+            // Make header sticky on scroll
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                // Add shadow when scrolled
+                if (currentScroll > 10) {
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+                
+                // Hide header on scroll down, show on scroll up
+                if (currentScroll <= 0) {
+                    header.style.top = '0';
+                    return;
+                }
+                
+                if (currentScroll > lastScroll && currentScroll > headerHeight) {
+                    // Scrolling down
+                    header.style.top = `-${headerHeight}px`;
+                } else {
+                    // Scrolling up
+                    header.style.top = '0';
+                }
+                
+                lastScroll = currentScroll;
+            });
+            
+            // Update order details from URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const orderId = urlParams.get('orderId');
             
@@ -346,7 +386,89 @@
             const options = { hour: '2-digit', minute: '2-digit' };
             document.getElementById('deliveryTime').textContent = 
                 new Date(now.getTime() + 60 * 60 * 1000).toLocaleTimeString('en-US', options);
+            
+            // Initialize mobile menu
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (menuBtn && navLinks) {
+                // Toggle mobile menu
+                const toggleMenu = (e) => {
+                    if (e) e.stopPropagation();
+                    menuBtn.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                };
+                
+                // Close menu
+                const closeMenu = () => {
+                    menuBtn.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                };
+                
+                // Toggle on button click
+                menuBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+                
+                // Close when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (navLinks.classList.contains('active') && 
+                        !e.target.closest('.nav-links') && 
+                        !e.target.closest('.hamburger')) {
+                        closeMenu();
+                    }
+                });
+                
+                // Close when clicking on nav links
+                const navItems = document.querySelectorAll('.nav-links a:not(.track-order-link)');
+                navItems.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        if (this.getAttribute('href') === '#') {
+                            e.preventDefault();
+                        }
+                        closeMenu();
+                    });
+                });
+                
+                // Handle track order links
+                const trackOrderLinks = document.querySelectorAll('.track-order-link');
+                trackOrderLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        closeMenu();
+                        const isMobileMenuLink = this.closest('.nav-links') && window.innerWidth <= 992;
+                        
+                        if (isMobileMenuLink) {
+                            return true;
+                        }
+                        
+                        e.stopPropagation();
+                        return true;
+                    });
+                });
+                
+                // Close on window resize
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 992) {
+                        closeMenu();
+                    }
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        if (window.innerWidth > 992) {
+                            closeMenu();
+                        }
+                    }, 250);
+                });
+                
+                // Initialize the menu state
+                closeMenu();
+            }
         });
     </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

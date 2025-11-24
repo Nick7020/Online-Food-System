@@ -207,24 +207,22 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="navbar container">
             <a href="index.html" class="logo">Food<span>Express</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
-                <a href="menu.html">Menu</a>
+                <a href="menu.html" class="active">Menu</a>
                 <a href="about.html">About</a>
                 <a href="reviews.html">Reviews</a>
                 <a href="contact.html">Contact</a>
                 <a href="login.html" class="btn-login">Login</a>
             </div>
             <div class="nav-actions">
-                <a href="menu.html" class="btn btn-primary">Order Now</a>
-                <div class="cart-icon">
+                <button class="btn btn-primary" id="viewCartBtn">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
-                </div>
+                </button>
                 <div class="hamburger" id="menuBtn">
                     <span></span>
                     <span></span>

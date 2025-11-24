@@ -105,17 +105,50 @@ function initMobileMenu() {
     });
 
     // Close when clicking on nav links
-    const navItems = document.querySelectorAll('.nav-links a');
+    const navItems = document.querySelectorAll('.nav-links a:not(.track-order-link)');
     navItems.forEach(item => {
         item.addEventListener('click', function(e) {
-            // Only prevent default if it's a link that should close the menu
-            if (this.getAttribute('href') !== '#') {
-                closeMenu();
-            } else {
+            // Only prevent default if it's not a regular link
+            if (this.getAttribute('href') === '#') {
                 e.preventDefault();
             }
+            closeMenu();
         });
     });
+    
+    // Handle track order links
+    const trackOrderLinks = document.querySelectorAll('.track-order-link');
+    trackOrderLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Close the mobile menu if it's open
+            closeMenu();
+            
+            // Check if this is a mobile view and the link is in the nav-links (mobile menu)
+            const isMobileMenuLink = this.closest('.nav-links') && window.innerWidth <= 992;
+            
+            if (isMobileMenuLink) {
+                // For mobile, let the default link behavior happen
+                return true;
+            }
+            
+            // For desktop, ensure the link works normally
+            e.stopPropagation();
+            return true;
+        });
+    });
+    
+    // Ensure clicks on the track order link don't close the menu immediately
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.track-order-link')) {
+            return;
+        }
+        
+        if (navLinks.classList.contains('active') && 
+            !e.target.closest('.nav-links') && 
+            !e.target.closest('.hamburger')) {
+            closeMenu();
+        }
+    }, true);
 
     // Close on window resize (if needed)
     let resizeTimer;
