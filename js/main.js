@@ -66,7 +66,7 @@ function initNavbar() {
 // Initialize mobile menu functionality
 function initMobileMenu() {
     const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.getElementById('navLinks');
     
     if (!menuBtn || !navLinks) {
         console.error('Menu button or nav links not found');
@@ -90,6 +90,7 @@ function initMobileMenu() {
 
     // Toggle on button click
     menuBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         toggleMenu();
     });
@@ -106,7 +107,14 @@ function initMobileMenu() {
     // Close when clicking on nav links
     const navItems = document.querySelectorAll('.nav-links a');
     navItems.forEach(item => {
-        item.addEventListener('click', closeMenu);
+        item.addEventListener('click', function(e) {
+            // Only prevent default if it's a link that should close the menu
+            if (this.getAttribute('href') !== '#') {
+                closeMenu();
+            } else {
+                e.preventDefault();
+            }
+        });
     });
 
     // Close on window resize (if needed)
@@ -123,23 +131,56 @@ function initMobileMenu() {
             }
         }, 250);
     });
+
+    // Initialize the menu state
+    closeMenu();
 }
 
 // Update active link based on current page
 function updateActiveLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    // Get the current page path and clean it up
+    let currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // Handle the root path (when URL is just the domain)
+    if (currentPage === '') {
+        currentPage = 'index.html';
+    }
+    
+    // Remove any query strings or hashes from the current page
+    currentPage = currentPage.split(/[?#]/)[0];
+    
     const navLinks = document.querySelectorAll('.nav-links a');
     
     navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || 
-            (currentPage === '' && linkHref === 'index.html') ||
-            (currentPage.includes(linkHref.replace('.html', '')) && linkHref !== 'index.html')) {
+        // Get the link's href and clean it up
+        let linkHref = link.getAttribute('href');
+        
+        // Remove any query strings or hashes from the link
+        linkHref = linkHref.split(/[?#]/)[0];
+        
+        // Special case for index page
+        if ((currentPage === 'index.html' || currentPage === '') && 
+            (linkHref === 'index.html' || linkHref === './index.html' || linkHref === '/')) {
             link.classList.add('active');
-        } else {
+        } 
+        // For other pages
+        else if (currentPage === linkHref || 
+                (currentPage.endsWith(linkHref) && linkHref !== 'index.html')) {
+            link.classList.add('active');
+        } 
+        // For menu page specifically (in case it's named differently)
+        else if ((currentPage === 'menu.html' || currentPage === 'menu') && 
+                 (linkHref === 'menu.html' || linkHref === './menu.html' || linkHref === '/menu.html')) {
+            link.classList.add('active');
+        }
+        else {
             link.classList.remove('active');
         }
     });
+    
+    // Debug info (can be removed in production)
+    console.log('Current page:', currentPage);
+    console.log('Active link:', document.querySelector('.nav-links a.active')?.getAttribute('href'));
 }
 
 // Initialize sticky header on scroll
