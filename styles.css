@@ -770,18 +770,17 @@ img {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
-        max-width: 400px;
+        width: 280px;
         height: 100vh;
         background-color: white;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        gap: 2rem;
-        transition: right 0.4s ease-in-out;
+        padding: 100px 20px 40px;
+        transition: all 0.4s ease-in-out;
         z-index: 1000;
-        padding: 6rem 2rem;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
     }
     
     .nav-links.active {
@@ -789,29 +788,96 @@ img {
     }
     
     .nav-links a {
-        font-size: 1.2rem;
-        padding: 0.5rem 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        color: var(--primary-color);
+        background-color: rgba(255, 107, 107, 0.05);
     }
     
     .nav-actions {
+        display: flex;
+        align-items: center;
         gap: 1rem;
     }
     
-    .track-order-link {
+    .nav-actions .track-order-link {
         display: none;
     }
     
-    .btn-primary {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+    .nav-links .track-order-link {
+        display: block !important;
+        margin: 10px 0;
+        padding: 10px 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        text-align: center;
+        width: 100%;
+        color: var(--text-color);
     }
     
-    /* No scroll when menu is open */
-    body.no-scroll {
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
+    .nav-links .track-order-link i {
+        margin-right: 8px;
     }
+    
+    .nav-links .track-order-link:hover {
+        background-color: #e9ecef;
+        color: var(--primary-color);
+    }
+}
+
+/* Track Order link styles */
+.track-order-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.track-order-link:hover {
+  color: var(--primary-color);
+}
+
+/* Hide track order link in nav-actions on mobile */
+@media (max-width: 992px) {
+  .nav-actions .desktop-only {
+    display: none;
+  }
+  
+  /* Style track order link in mobile menu */
+  .nav-links .track-order-link {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    padding: 12px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-links .track-order-link i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .nav-links .track-order-link:hover {
+    background-color: #e9ecef;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
 }
 
 /* ===== Responsive Styles ===== */
