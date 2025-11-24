@@ -46,6 +46,8 @@
             <button class="filter-btn" data-category="pasta">Pasta</button>
             <button class="filter-btn" data-category="salad">Salads</button>
             <button class="filter-btn" data-category="dessert">Desserts</button>
+            <button class="filter-btn" data-category="appetizer">Appetizers</button>
+            <button class="filter-btn" data-category="beverage">Beverages</button>
         </div>
 
         <div class="menu-items" id="menuItems">
@@ -115,6 +117,12 @@
     </div>
 
     <script src="js/menu.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        // Initialize the menu after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will be handled by menu.js
+            console.log('Menu page loaded');
+        });
+    </script>
 </body>
 </html>

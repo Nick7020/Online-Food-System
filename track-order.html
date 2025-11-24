@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - FoodExpress</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .tracking-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .order-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-header h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .status-line {
+            position: absolute;
+            top: 15px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+
+        .status-line-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 75%;
+            background: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        .status-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .status-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            color: white;
+        }
+
+        .status-step.active .status-icon {
+            background: #4CAF50;
+        }
+
+        .status-step.completed .status-icon {
+            background: #4CAF50;
+        }
+
+        .delivery-time {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .delivery-person {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .delivery-person img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            object-fit: cover;
+            border: 3px solid #4CAF50;
+        }
+
+        .delivery-person-info h3 {
+            margin: 0 0 0.5rem;
+            color: #333;
+        }
+
+        .delivery-person-info p {
+            margin: 0 0 1rem;
+            color: #666;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-call, .btn-message {
+            padding: 0.5rem 1rem;
+            border: 1px solid #4CAF50;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-call {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-call:hover {
+            background: #3d8b40;
+            border-color: #3d8b40;
+        }
+
+        .btn-message {
+            background: white;
+            color: #4CAF50;
+        }
+
+        .btn-message:hover {
+            background: #f0f0f0;
+        }
+
+        .live-tracking {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .map-placeholder {
+            height: 300px;
+            background: #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            margin: 1rem 0;
+            padding: 1rem;
+        }
+
+        .map-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4CAF50;
+        }
+
+        .need-help {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-help {
+            padding: 0.75rem 2rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-help:hover {
+            background: #3d8b40;
+        }
+
+        @media (max-width: 768px) {
+            .tracking-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .status-step p {
+                font-size: 0.8rem;
+            }
+
+            .delivery-person {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .delivery-person img {
+                margin: 0 0 1rem;
+            }
+
+            .contact-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">Food<span>Express</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="about.html">About</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn-login">Login</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="viewCartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <div class="hamburger" id="menuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header><br><br>
+
+    <div class="tracking-container">
+        <div class="order-header">
+            <h1>Your order has been placed!</h1>
+            <p>Order ID: #<span id="orderId">123456</span> | Placed on <span id="orderDate">15 Nov, 12:30 PM</span></p>
+        </div>
+
+        <div class="status-container">
+            <div class="status-line">
+                <div class="status-line-progress"></div>
+            </div>
+            <div class="status-step completed">
+                <div class="status-icon"><i class="fas fa-check"></i></div>
+                <p>Order Confirmed</p>
+            </div>
+            <div class="status-step completed">
+                <div class="status-icon"><i class="fas fa-utensils"></i></div>
+                <p>Preparing</p>
+            </div>
+            <div class="status-step active">
+                <div class="status-icon"><i class="fas fa-motorcycle"></i></div>
+                <p>On the way</p>
+            </div>
+            <div class="status-step">
+                <div class="status-icon"><i class="fas fa-home"></i></div>
+                <p>Delivered</p>
+            </div>
+        </div>
+
+        <div class="delivery-time">
+            <h3>Estimated delivery time</h3>
+            <p>Your order will be delivered by <span id="deliveryTime">01:30 PM</span></p>
+        </div>
+
+        <div class="delivery-person">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Delivery Partner" id="deliveryPersonImg">
+            <div class="delivery-person-info">
+                <h3>Your Delivery Partner</h3>
+                <p id="deliveryStatus">Rahul K. is on the way to the restaurant</p>
+                <div class="contact-buttons">
+                    <a href="tel:+919876543210" class="btn-call"><i class="fas fa-phone"></i> Call</a>
+                    <a href="https://wa.me/919876543210" class="btn-message" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="live-tracking">
+            <h2>Live Tracking</h2>
+            <div class="map-placeholder">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Live order tracking will be available once your order is out for delivery</p>
+            </div>
+            <p>Your order is being prepared and will be on its way soon</p>
+        </div>
+
+        <div class="need-help">
+            <p>Need help with your order?</p>
+            <a href="contact.html" class="btn-help"><i class="fas fa-headset"></i> Contact Support</a>
+        </div>
+    </div>
+
+    <script>
+        // You can add dynamic functionality here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Example: Update order details from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            
+            if (orderId) {
+                document.getElementById('orderId').textContent = orderId;
+            }
+            
+            // Update current time for demo purposes
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit' };
+            document.getElementById('deliveryTime').textContent = 
+                new Date(now.getTime() + 60 * 60 * 1000).toLocaleTimeString('en-US', options);
+        });
+    </script>
+</body>
+</html>

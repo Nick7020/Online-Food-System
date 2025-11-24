@@ -4,28 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - FoodExpress</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Reuse styles from login page */
+        :root {
+            --primary-color: #ff6b6b;
+            --dark-color: #2d3436;
+            --text-light: #636e72;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
         .auth-container {
             display: flex;
-            min-height: calc(100vh - 80px);
-            margin-top: 80px;
-            padding: 2rem 0;
+            min-height: 100vh;
+            position: relative;
         }
         
         .auth-image {
             flex: 1;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_7.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             padding: 2rem;
             text-align: center;
+            min-height: 100vh;
         }
         
         .auth-image-content {
@@ -51,6 +70,11 @@
             justify-content: center;
             padding: 2rem;
             overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            max-width: 600px;
+            margin: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         
         .auth-form {
@@ -187,52 +211,22 @@
             }
             
             .auth-image {
-                display: none;
+                padding: 4rem 1rem;
+                min-height: 300px;
+                background-attachment: scroll;
             }
             
             .auth-form-container {
-                padding: 1rem;
+                margin: 1rem;
+                padding: 2rem;
+                width: calc(100% - 2rem);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation (Same as index.html) -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">Food<span>Express</span></a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="#categories">Categories</a>
-                <a href="#popular">Popular</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="login.html" class="btn btn-outline">Sign In</a>
-                <a href="signup.html" class="btn btn-primary">Sign Up</a>
-                <div class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </div>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
     <!-- Signup Section -->
     <div class="auth-container">
-        <div class="auth-image">
-            <div class="auth-image-content">
-                <h2>Join Our Foodie Community!</h2>
-                <p>Create an account to enjoy personalized recommendations, faster checkout, and exclusive deals on your favorite foods.</p>
-            </div>
-        </div>
-        
         <div class="auth-form-container">
             <form class="auth-form" id="signupForm">
                 <h1>Create Account</h1>
@@ -310,130 +304,61 @@
     </div>
 
     <!-- Footer (Same as index.html) -->
-    <footer id="contact" class="footer">
+    <footer class="simple-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>FoodExpress</h3>
-                    <p>Delivering happiness to your doorstep with the best food from top restaurants in town.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Menu</a></li>
-                        <li><a href="#">How It Works</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, New York, NY</p>
-                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                    <p><i class="fas fa-envelope"></i> info@foodexpress.com</p>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe to get updates on new restaurants and special offers</p>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Your email address">
-                        <button><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 FoodExpress. All rights reserved.</p>
-                <div class="payment-methods">
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-cc-paypal"></i>
-                    <i class="fab fa-cc-apple-pay"></i>
-                </div>
-            </div>
+            <p>&copy; 2025 FoodExpress. All rights reserved.</p>
         </div>
     </footer>
+    
+    <style>
+        .simple-footer {
+            background-color: #2d3436;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .simple-footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .simple-footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
 
     <script>
         // Handle signup form submission
         document.getElementById('signupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form data
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const phone = document.getElementById('phone').value.trim();
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
             
-            // Basic validation
-            if (!name || !email || !password || !confirmPassword) {
-                showAlert('Please fill in all fields', 'error');
+            // Simple validation
+            if (data.password !== data.confirmPassword) {
+                alert('Passwords do not match!');
                 return;
             }
-            
-            if (password !== confirmPassword) {
-                showAlert('Passwords do not match', 'error');
-                return;
-            }
-            
-            if (password.length < 8) {
-                showAlert('Password must be at least 8 characters long', 'error');
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = document.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing up...';
             
             try {
-                const response = await fetch('http://localhost:5000/api/auth/signup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name,
-                        email,
-                        password,
-                        passwordConfirm: confirmPassword,
-                        phone: phone || undefined
-                    })
-                });
+                console.log('Form submitted:', data);
+                alert('Account created successfully! Redirecting to login...');
                 
-                const data = await response.json();
+                // Redirect to login page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
                 
-                if (response.ok) {
-                    showAlert('Signup successful! Redirecting to login...', 'success');
-                    // Redirect to login page after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = 'login.html';
-                    }, 2000);
-                } else {
-                    throw new Error(data.message || 'Signup failed');
-                }
             } catch (error) {
                 console.error('Error:', error);
-                const errorMessage = error.message.includes('Failed to fetch') 
-                    ? 'Cannot connect to the server. Please check your internet connection and try again.'
-                    : error.message || 'An error occurred during signup';
-                showAlert(errorMessage, 'error');
-            } finally {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            }
-        }); // Close the form submit event listener
-        
-        // Check if user is already logged in
-        document.addEventListener('DOMContentLoaded', function() {
+                alert('An error occurred. Please try again.');
             const token = localStorage.getItem('token');
             if (token) {
                 // User is already logged in, redirect to home

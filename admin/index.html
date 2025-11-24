@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FoodExpress</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Food<span>Express</span></h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active">
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Orders</span>
+                            <span class="badge">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="delivery.html">
+                            <i class="fas fa-motorcycle"></i>
+                            <span>Delivery</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-utensils"></i>
+                            <span>Menu Items</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-actions">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin">
+                        <span>Admin User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <h1>Dashboard Overview</h1>
+                
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #ff6b6b20; color: #ff6b6b;">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Orders</h3>
+                            <p>1,248</p>
+                            <span class="stat-change positive">+12% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #4caf5020; color: #4caf50;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Completed</h3>
+                            <p>1,120</p>
+                            <span class="stat-change positive">+8% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #2196f320; color: #2196f3;">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Delivery</h3>
+                            <p>15</p>
+                            <span class="stat-change negative">-2 from yesterday</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #ff980020; color: #ff9800;">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Revenue</h3>
+                            <p>$24,780</p>
+                            <span class="stat-change positive">+15% from last month</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Orders -->
+                <div class="recent-orders">
+                    <div class="section-header">
+                        <h2>Recent Orders</h2>
+                        <a href="orders.html" class="view-all">View All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-001</td>
+                                    <td>John Doe</td>
+                                    <td>3</td>
+                                    <td>$45.99</td>
+                                    <td><span class="status-badge preparing">Preparing</span></td>
+                                    <td><button class="btn-action"><i class="fas fa-ellipsis-v"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-002</td>
+                                    <td>Jane Smith</td>
+                                    <td>2</td>
+                                    <td>$32.50</td>
+                                    <td><span class="status-badge on-the-way">On the way</span></td>
+                                    <td><button class="btn-action"><i class="fas fa-ellipsis-v"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-003</td>
+                                    <td>Robert Johnson</td>
+                                    <td>5</td>
+                                    <td>$78.30</td>
+                                    <td><span class="status-badge delivered">Delivered</span></td>
+                                    <td><button class="btn-action"><i class="fas fa-ellipsis-v"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-004</td>
+                                    <td>Emily Davis</td>
+                                    <td>1</td>
+                                    <td>$15.99</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                    <td><button class="btn-action"><i class="fas fa-ellipsis-v"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-box">
+                        <h3>Today's Orders</h3>
+                        <div class="stat-value">48</div>
+                        <div class="stat-progress">
+                            <div class="progress-bar" style="width: 65%;"></div>
+                        </div>
+                        <div class="stat-comparison">
+                            <span class="positive"><i class="fas fa-arrow-up"></i> 12% from yesterday</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Active Delivery Partners</h3>
+                        <div class="stat-value">15/20</div>
+                        <div class="stat-progress">
+                            <div class="progress-bar" style="width: 75%; background: #4caf50;"></div>
+                        </div>
+                        <div class="stat-comparison">
+                            <span class="negative"><i class="fas fa-arrow-down"></i> 2 offline</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Customer Satisfaction</h3>
+                        <div class="stat-value">4.8/5</div>
+                        <div class="stat-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="stat-comparison">
+                            <span class="positive">+0.2 this month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

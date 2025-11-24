@@ -5,7 +5,7 @@ const menuItems = [
         name: 'Margherita Pizza',
         category: 'pizza',
         price: 299,
-        image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg',
         description: 'Classic pizza with tomato sauce, mozzarella, and fresh basil.'
     },
     {
@@ -13,7 +13,7 @@ const menuItems = [
         name: 'Veg Supreme Burger',
         category: 'burger',
         price: 199,
-        image: 'https://images.unsplash.com/photo-1571091718767-18bdd1d4e1b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         description: 'Delicious veg patty with fresh vegetables and special sauce.'
     },
     {
@@ -21,7 +21,7 @@ const menuItems = [
         name: 'Pasta Alfredo',
         category: 'pasta',
         price: 249,
-        image: 'https://images.unsplash.com/photo-1645112411348-404c894e447c?ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://img.freepik.com/free-photo/fusilli-pasta-with-tomato-sauce-parmesan_2829-17965.jpg',
         description: 'Creamy pasta with parmesan cheese and garlic.'
     },
     {
@@ -29,7 +29,7 @@ const menuItems = [
         name: 'Caesar Salad',
         category: 'salad',
         price: 179,
-        image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
+        image: 'https://img.freepik.com/free-photo/greek-salad-with-feta-cheese-tomatoes-cucumber_2829-1733.jpg',
         description: 'Fresh romaine lettuce with croutons, parmesan, and Caesar dressing.'
     },
     {
@@ -37,7 +37,7 @@ const menuItems = [
         name: 'Chocolate Lava Cake',
         category: 'dessert',
         price: 149,
-        image: 'https://images.unsplash.com/photo-1571115173804-d1fbe080dba6?ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+        image: 'https://img.freepik.com/free-photo/chocolate-lava-cake-with-vanilla-ice-cream_114579-187.jpg',
         description: 'Warm chocolate cake with a molten center, served with ice cream.'
     },
     {
@@ -45,7 +45,7 @@ const menuItems = [
         name: 'Pepperoni Pizza',
         category: 'pizza',
         price: 349,
-        image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80',
+        image: 'https://img.freepik.com/free-photo/pepperoni-pizza-with-cheese-sauce_140725-3609.jpg',
         description: 'Classic pizza with tomato sauce, mozzarella, and pepperoni.'
     },
     {
@@ -53,7 +53,7 @@ const menuItems = [
         name: 'Cheeseburger',
         category: 'burger',
         price: 229,
-        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1199&q=80',
+        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         description: 'Juicy beef patty with cheese, lettuce, tomato, and special sauce.'
     },
     {
@@ -61,8 +61,56 @@ const menuItems = [
         name: 'Tiramisu',
         category: 'dessert',
         price: 199,
-        image: 'https://images.unsplash.com/photo-1571870188182-9b1a9330a97f?ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
+        image: 'https://img.freepik.com/free-photo/tiramisu-cake-slice-with-coffee-powder_114579-21185.jpg',
         description: 'Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone.'
+    },
+    {
+        id: 9,
+        name: 'Margherita Pizza',
+        category: 'pizza',
+        price: 279,
+        image: 'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        description: 'Classic pizza with tomato sauce, fresh mozzarella, and basil leaves.'
+    },
+    {
+        id: 10,
+        name: 'Chicken Wings',
+        category: 'appetizer',
+        price: 349,
+        image: 'https://images.unsplash.com/photo-1567620835334-206dfc1c3f1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        description: 'Crispy chicken wings tossed in your choice of sauce.'
+    },
+    {
+        id: 11,
+        name: 'Veggie Pasta',
+        category: 'pasta',
+        price: 269,
+        image: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        description: 'Penne pasta with mixed vegetables in a creamy sauce.'
+    },
+    {
+        id: 12,
+        name: 'Chocolate Brownie',
+        category: 'dessert',
+        price: 149,
+        image: 'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        description: 'Warm chocolate brownie served with vanilla ice cream.'
+    },
+    {
+        id: 13,
+        name: 'Greek Salad',
+        category: 'salad',
+        price: 229,
+        image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        description: 'Fresh vegetables, feta cheese, olives, and olive oil dressing.'
+    },
+    {
+        id: 14,
+        name: 'Mojito',
+        category: 'beverage',
+        price: 179,
+        image: 'https://images.unsplash.com/photo-1514362545859-6dd4713aa88b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        description: 'Refreshing mint mojito with lime and soda.'
     }
 ];
 
@@ -83,29 +131,92 @@ const orderForm = document.getElementById('orderForm');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Initialize the page
-document.addEventListener('DOMContentLoaded', () => {
-    displayMenuItems(menuItems);
-    updateCartCount();
-    setupEventListeners();
-});
+function initMenu() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            displayMenuItems(menuItems);
+            updateCartCount();
+            setupEventListeners();
+        });
+    } else {
+        // DOM already loaded
+        displayMenuItems(menuItems);
+        updateCartCount();
+        setupEventListeners();
+    }
+}
+
+// Start the application
+initMenu();
 
 // Display menu items
 function displayMenuItems(items) {
-    menuItemsContainer.innerHTML = items.map(item => `
-        <div class="menu-item" data-category="${item.category}">
-            <img src="${item.image}" alt="${item.name}" class="menu-item-img">
-            <div class="menu-item-content">
-                <h3 class="menu-item-title">${item.name}</h3>
-                <p class="menu-item-desc">${item.description}</p>
-                <div class="menu-item-footer">
-                    <span class="price">₹${item.price.toFixed(2)}</span>
-                    <button class="add-to-cart" data-id="${item.id}">
-                        <i class="fas fa-plus"></i> Add to Cart
-                    </button>
-                </div>
+    // Add loading class to container
+    menuItemsContainer.classList.add('loading');
+    
+    // Clear existing content
+    menuItemsContainer.innerHTML = '';
+    
+    // Create a document fragment for better performance
+    const fragment = document.createDocumentFragment();
+    
+    items.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu-item';
+        menuItem.dataset.category = item.category;
+        
+        // Create image with loading and error handling
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'menu-item-img-container';
+        
+        const img = new Image();
+        img.className = 'menu-item-img';
+        img.alt = item.name;
+        img.loading = 'lazy';
+        
+        // Set up image loading state
+        img.onload = function() {
+            this.style.opacity = 1;
+        };
+        
+        // Set up error handling
+        img.onerror = function() {
+            this.src = `https://via.placeholder.com/300x200?text=${encodeURIComponent(item.name)}`;
+            this.style.opacity = 1;
+        };
+        
+        // Set the source last to trigger loading
+        img.src = item.image;
+        
+        imgContainer.appendChild(img);
+        
+        // Create menu item content
+        const content = document.createElement('div');
+        content.className = 'menu-item-content';
+        content.innerHTML = `
+            <h3 class="menu-item-title">${item.name}</h3>
+            <p class="menu-item-desc">${item.description}</p>
+            <div class="menu-item-footer">
+                <span class="price">₹${item.price.toFixed(2)}</span>
+                <button class="add-to-cart" data-id="${item.id}">
+                    <i class="fas fa-plus"></i> Add to Cart
+                </button>
             </div>
-        </div>
-    `).join('');
+        `;
+        
+        // Assemble the menu item
+        menuItem.appendChild(imgContainer);
+        menuItem.appendChild(content);
+        
+        // Add to fragment
+        fragment.appendChild(menuItem);
+    });
+    
+    // Add all items to container at once
+    menuItemsContainer.appendChild(fragment);
+    
+    // Remove loading class
+    menuItemsContainer.classList.remove('loading');
 }
 
 // Filter menu items

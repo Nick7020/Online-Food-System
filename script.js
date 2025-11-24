@@ -1,3 +1,14 @@
+// DOM Elements
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.querySelector('.nav-links');
+const navItems = document.querySelectorAll('.nav-links a');
+const trackOrderBtn = document.getElementById('trackOrderBtn');
+const trackingModal = document.getElementById('trackingModal');
+const closeModal = document.querySelector('.close-modal');
+const orderForm = document.getElementById('orderForm');
+const orderIdInput = document.getElementById('orderId');
+const trackingResult = document.getElementById('trackingResult');
+
 // Sample food data
 const foodItems = [
     {
@@ -285,7 +296,106 @@ function setupEventListeners() {
 }
 
 // Initialize the app when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+    setupEventListeners();
+});
+
+// Setup event listeners
+function setupEventListeners() {
+    // Mobile menu toggle
+    if (menuBtn) {
+        menuBtn.addEventListener('click', toggleMenu);
+    }
+
+    // Close mobile menu when clicking on a nav link
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 992) {
+                closeMenu();
+            }
+        });
+    });
+
+    // Track order modal
+    if (trackOrderBtn) {
+        trackOrderBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            trackingModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close modal
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            trackingModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === trackingModal) {
+            trackingModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Handle order form submission
+    if (orderForm) {
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const orderId = orderIdInput.value.trim();
+            if (orderId) {
+                trackOrder(orderId);
+            }
+        });
+    }
+}
+
+// Toggle mobile menu
+function toggleMenu() {
+    menuBtn.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+}
+
+// Close mobile menu
+function closeMenu() {
+    menuBtn.classList.remove('active');
+    navLinks.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Track order function
+function trackOrder(orderId) {
+    // Simulate API call
+    trackingResult.innerHTML = `
+        <div class="tracking-status">
+            <div class="status active">
+                <i class="fas fa-check-circle"></i>
+                <span>Order Placed</span>
+            </div>
+            <div class="status active">
+                <i class="fas fa-utensils"></i>
+                <span>Preparing</span>
+            </div>
+            <div class="status">
+                <i class="fas fa-motorcycle"></i>
+                <span>On the way</span>
+            </div>
+            <div class="status">
+                <i class="fas fa-home"></i>
+                <span>Delivered</span>
+            </div>
+        </div>
+        <div class="tracking-details">
+            <p><strong>Order ID:</strong> ${orderId}</p>
+            <p><strong>Estimated Delivery:</strong> 30-45 minutes</p>
+        </div>
+    `;
+}
 
 // Add some CSS for the notification
 const style = document.createElement('style');

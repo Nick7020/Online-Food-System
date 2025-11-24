@@ -207,32 +207,32 @@
     </style>
 </head>
 <body>
-    <!-- Navigation (Same as index.html) -->
-    <nav class="navbar">
-        <div class="container">
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar container">
             <a href="index.html" class="logo">Food<span>Express</span></a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
-                <a href="#categories">Categories</a>
-                <a href="#popular">Popular</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact">Contact</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn-login">Login</a>
             </div>
             <div class="nav-actions">
-                <a href="login.html" class="btn btn-outline">Sign In</a>
-                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                <a href="menu.html" class="btn btn-primary">Order Now</a>
                 <div class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </div>
+                <div class="hamburger" id="menuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Order Tracking Section -->
     <div class="tracking-container">
@@ -436,11 +436,18 @@
         };
         
         // Handle back button and navigation
-        document.querySelector('.back-to-orders').addEventListener('click', function() {
-            window.location.href = 'orders.html';
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.querySelector('.back-to-orders');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'orders.html';
+                });
+            }
         });
     </script>
     
-    <script src="script.js"></script>
+    <!-- Main JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
