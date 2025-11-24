@@ -155,67 +155,543 @@
         </div>
     </footer>
 
-    <!-- Start of Tawk.to Script -->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/YOUR_TAWKTO_WIDGET_ID/default';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
+    <!-- Support Button
+    <div id="supportButton" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999;">
+        <a href="#contact" style="display: inline-flex; align-items: center; background: #ff6b6b; color: white; padding: 12px 20px; border-radius: 30px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+            <i class="fas fa-headset" style="margin-right: 8px; font-size: 1.1em;"></i>
+            <span>Need Help?</span>
+        </a>
+    </div> -->
+    
+    <style>
+        #supportButton a:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
         
-        // Customize the chat widget
-        Tawk_API.onLoad = function(){
-            // Set custom attributes
-            Tawk_API.setAttributes({
-                'name' : 'FoodExpress Support',
-                'email' : 'support@foodexpress.com',
-                'phone' : '+1 (555) 123-4567',
-                'supportHours' : '9am - 9pm, 7 days a week',
-                'website' : 'www.foodexpress.com'
-            }, function(error){});
-            
-            // Set default message with support information
-            Tawk_API.visitor = {
-                name: 'Guest User',
-                email: 'guest@example.com',
-                hash: ''
-            };
-            
-            // Customize the chat appearance
-            Tawk_API.customStyle = {
-                visibility: {
-                    desktop: {
-                        position: 'br',
-                        xOffset: '20px',
-                        yOffset: '20px',
-                        zIndex: '999999'
-                    },
-                    mobile: {
-                        position: 'br',
-                        xOffset: '10px',
-                        yOffset: '10px',
-                        zIndex: '999999'
-                    }
-                },
-                theme: {
-                    buttonText: 'Need Help?',
-                    buttonBackground: '#ff6b6b',
-                    buttonTextColor: '#ffffff'
-                }
-            };
-            
-            // Make sure the chat is visible on all pages
-            Tawk_API.showWidget();
-        };
+        @media (max-width: 768px) {
+            #supportButton {
+                bottom: 15px;
+                right: 15px;
+            }
+            #supportButton a {
+                padding: 10px 16px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
     </script>
     <!-- End of Tawk.to Script -->
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <!-- AI Chatbot Widget -->
+<div id="chatbot-container" class="chatbot-container">
+    <div class="chatbot-header">
+        <div class="chatbot-title">
+            <i class="fas fa-robot"></i>
+            <h3>FoodExpress Assistant</h3>
+        </div>
+        <button id="minimize-chatbot" class="chatbot-minimize">
+            <i class="fas fa-minus"></i>
+        </button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages">
+        <div class="message bot-message">
+            <div class="message-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+                <p>Hello! 👋 I'm your FoodExpress assistant. How can I help you today?</p>
+                <span class="message-time">Just now</span>
+            </div>
+        </div>
+    </div>
+    <div class="chatbot-quick-replies">
+        <button class="quick-reply">Track my order</button>
+        <button class="quick-reply">View menu</button>
+        <button class="quick-reply">Contact support</button>
+    </div>
+    <div class="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Type your message..." class="chatbot-input">
+        <button id="send-message" class="chatbot-send-btn">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Chatbot Toggle Button -->
+<button id="chatbot-toggle" class="chatbot-toggle-btn">
+    <i class="fas fa-comment-dots"></i>
+</button>
+
+<!-- Chatbot Styles -->
+<style>
+    /* Chatbot Container */
+    .chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .chatbot-container.active {
+        display: flex;
+        animation: slideUp 0.3s ease;
+    }
+
+    /* Header */
+    .chatbot-header {
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chatbot-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chatbot-title i {
+        font-size: 1.2rem;
+    }
+
+    .chatbot-title h3 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .chatbot-minimize {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .chatbot-minimize:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Messages Area */
+    .chatbot-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 400px;
+        background: #f8f9fa;
+    }
+
+    .message {
+        display: flex;
+        margin-bottom: 15px;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .bot-message {
+        justify-content: flex-start;
+    }
+
+    .user-message {
+        justify-content: flex-end;
+    }
+
+    .message-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ff6b6b;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    .user-message .message-avatar {
+        background: #4a90e2;
+    }
+
+    .message-content {
+        max-width: 80%;
+    }
+
+    .message-content p {
+        margin: 0;
+        padding: 10px 15px;
+        border-radius: 18px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .bot-message .message-content p {
+        background: white;
+        border-top-left-radius: 4px;
+        color: #333;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .user-message .message-content p {
+        background: #4a90e2;
+        color: white;
+        border-top-right-radius: 4px;
+    }
+
+    .message-time {
+        display: block;
+        font-size: 0.7rem;
+        color: #999;
+        margin-top: 4px;
+        text-align: right;
+        padding-right: 5px;
+    }
+
+    /* Quick Replies */
+    .chatbot-quick-replies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 15px;
+        background: #f8f9fa;
+        border-top: 1px solid #eee;
+    }
+
+    .quick-reply {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        color: #555;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .quick-reply:hover {
+        background: #f0f0f0;
+        border-color: #ccc;
+    }
+
+    /* Input Area */
+    .chatbot-input-container {
+        display: flex;
+        padding: 12px 15px;
+        background: white;
+        border-top: 1px solid #eee;
+    }
+
+    .chatbot-input {
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    .chatbot-input:focus {
+        border-color: #ff6b6b;
+    }
+
+    .chatbot-send-btn {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .chatbot-send-btn:hover {
+        background: #ff5252;
+        transform: scale(1.05);
+    }
+
+    /* Toggle Button */
+    .chatbot-toggle-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        border: none;
+        box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        cursor: pointer;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        transition: all 0.3s ease;
+    }
+
+    .chatbot-toggle-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 7px 25px rgba(255, 107, 107, 0.5);
+    }
+
+    /* Animations */
+    @keyframes slideUp {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Typing Indicator */
+    .typing-indicator {
+        display: flex;
+        padding: 10px 15px;
+        background: white;
+        border-radius: 18px;
+        margin-bottom: 15px;
+        width: fit-content;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .typing-indicator span {
+        height: 8px;
+        width: 8px;
+        background: #ccc;
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 2px;
+        animation: bounce 1.3s linear infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .typing-indicator span:last-child {
+        animation-delay: 0.3s;
+    }
+
+    @keyframes bounce {
+        0%, 60%, 100% {
+            transform: translateY(0);
+        }
+        30% {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+        .chatbot-container {
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+        }
+
+        .chatbot-messages {
+            max-height: calc(100vh - 200px);
+        }
+
+        .chatbot-toggle-btn {
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+    }
+</style>
+
+<!-- Chatbot Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // DOM Elements
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const minimizeBtn = document.getElementById('minimize-chatbot');
+        const chatMessages = document.getElementById('chatbot-messages');
+        const chatInput = document.getElementById('chatbot-input');
+        const sendButton = document.getElementById('send-message');
+        const quickReplies = document.querySelectorAll('.quick-reply');
+
+        // Toggle Chat
+        chatbotToggle.addEventListener('click', function() {
+            chatbotContainer.classList.toggle('active');
+            if (chatbotContainer.classList.contains('active')) {
+                chatInput.focus();
+            }
+        });
+
+        // Minimize Chat
+        minimizeBtn.addEventListener('click', function() {
+            chatbotContainer.classList.remove('active');
+        });
+
+        // Send Message
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Simulate bot response after a short delay
+            setTimeout(() => {
+                // Remove typing indicator
+                const typingIndicator = document.querySelector('.typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+
+                // Get bot response
+                const botResponse = getBotResponse(message);
+                addMessage(botResponse, 'bot');
+            }, 1000);
+        }
+
+        // Add Message to Chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-${sender === 'bot' ? 'robot' : 'user'}"></i>
+                </div>
+                <div class="message-content">
+                    <p>${text}</p>
+                    <span class="message-time">${time}</span>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show Typing Indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Get Bot Response
+        function getBotResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Greetings
+            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                return "Hello! How can I assist you today?";
+            }
+            
+            // Order Status
+            if (message.includes('order') && (message.includes('status') || message.includes('track'))) {
+                return "To track your order, please click on the 'Track Order' link in the navigation menu or visit our order tracking page. Would you like me to take you there?";
+            }
+            
+            // Menu
+            if (message.includes('menu') || message.includes('food') || message.includes('dishes')) {
+                return "You can view our full menu by clicking on the 'Menu' link in the navigation. We offer a variety of cuisines including Italian, Chinese, Indian, and more!";
+            }
+            
+            // Hours
+            if (message.includes('open') || message.includes('time') || message.includes('hour')) {
+                return "We're open 7 days a week from 11:00 AM to 11:00 PM. Our kitchen is open for delivery until 10:30 PM.";
+            }
+            
+            // Contact
+            if (message.includes('contact') || message.includes('call') || message.includes('email')) {
+                return "You can reach our customer support at +1 234 567 890 or email us at support@foodexpress.com. Our team is available 24/7 to assist you!";
+            }
+            
+            // Default response
+            const responses = [
+                "I'm here to help! Could you please provide more details?",
+                "I'm not sure I understand. Could you rephrase that?",
+                "Thanks for your message! How can I assist you further?",
+                "I'd be happy to help with that. Could you give me more information?",
+                "I'm still learning! Could you try asking in a different way?"
+            ];
+            
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Event Listeners
+        sendButton.addEventListener('click', sendMessage);
+        
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Quick Reply Buttons
+        quickReplies.forEach(button => {
+            button.addEventListener('click', function() {
+                const message = this.textContent;
+                chatInput.value = message;
+                sendMessage();
+            });
+        });
+
+        // Sample welcome message
+        setTimeout(() => {
+            addMessage("Hi there! I'm your FoodExpress assistant. You can ask me about our menu, track your order, or get help with anything else!", 'bot');
+        }, 1000);
+    });
+</script>
     <script src="js/main.js"></script>
 </body>
 </html>
