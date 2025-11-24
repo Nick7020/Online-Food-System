@@ -154,7 +154,68 @@
             </div>
         </div>
     </footer>
-    <!-- Main JavaScript -->
+
+    <!-- Start of Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/YOUR_TAWKTO_WIDGET_ID/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+        
+        // Customize the chat widget
+        Tawk_API.onLoad = function(){
+            // Set custom attributes
+            Tawk_API.setAttributes({
+                'name' : 'FoodExpress Support',
+                'email' : 'support@foodexpress.com',
+                'phone' : '+1 (555) 123-4567',
+                'supportHours' : '9am - 9pm, 7 days a week',
+                'website' : 'www.foodexpress.com'
+            }, function(error){});
+            
+            // Set default message with support information
+            Tawk_API.visitor = {
+                name: 'Guest User',
+                email: 'guest@example.com',
+                hash: ''
+            };
+            
+            // Customize the chat appearance
+            Tawk_API.customStyle = {
+                visibility: {
+                    desktop: {
+                        position: 'br',
+                        xOffset: '20px',
+                        yOffset: '20px',
+                        zIndex: '999999'
+                    },
+                    mobile: {
+                        position: 'br',
+                        xOffset: '10px',
+                        yOffset: '10px',
+                        zIndex: '999999'
+                    }
+                },
+                theme: {
+                    buttonText: 'Need Help?',
+                    buttonBackground: '#ff6b6b',
+                    buttonTextColor: '#ffffff'
+                }
+            };
+            
+            // Make sure the chat is visible on all pages
+            Tawk_API.showWidget();
+        };
+    </script>
+    <!-- End of Tawk.to Script -->
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
