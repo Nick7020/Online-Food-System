@@ -62,25 +62,60 @@ img {
 
 .btn {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 50px;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
   transition: var(--transition);
   border: 2px solid transparent;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* Make buttons more compact on mobile */
+@media (max-width: 768px) {
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  /* Make the Order Now button in hero section more compact */
+  .hero .btn {
+    padding: 8px 16px;
+    margin-right: 8px;
+  }
+  
+  /* Adjust navbar buttons */
+  .nav-actions .btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
 }
 
 .btn-primary {
   background-color: var(--primary-color);
   color: white;
+  min-width: 100px;
 }
 
 .btn-primary:hover {
   background-color: #ff5252;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Make buttons more subtle on mobile */
+@media (max-width: 768px) {
+  .btn-primary {
+    min-width: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .btn-outline {
